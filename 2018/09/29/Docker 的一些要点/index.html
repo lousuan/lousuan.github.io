@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Docker,SRE," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文目录与的目录对应，主要是对书中相应的补充和理解。文中所提到的概念、章节、都可以在 《Docker —— 从入门到实践》 中找到详细解释。本文只补充一些书上没有提到的内容。 最后的附录是一个如何打包应用的简单例子。 基本概念Docker 容器是 Docker 镜像的实例化，有点类似于 class 与 object 之间的关系。 虽然 Docker 看起来像是一个虚拟机，但是 Docker 不是一">
+<meta name="keywords" content="Docker,SRE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 的一些要点">
+<meta property="og:url" content="http://lousuan.github.io/2018/09/29/Docker 的一些要点/index.html">
+<meta property="og:site_name" content="lousuan&#39;s Home">
+<meta property="og:description" content="本文目录与的目录对应，主要是对书中相应的补充和理解。文中所提到的概念、章节、都可以在 《Docker —— 从入门到实践》 中找到详细解释。本文只补充一些书上没有提到的内容。 最后的附录是一个如何打包应用的简单例子。 基本概念Docker 容器是 Docker 镜像的实例化，有点类似于 class 与 object 之间的关系。 虽然 Docker 看起来像是一个虚拟机，但是 Docker 不是一">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-28T16:40:06.123Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker 的一些要点">
+<meta name="twitter:description" content="本文目录与的目录对应，主要是对书中相应的补充和理解。文中所提到的概念、章节、都可以在 《Docker —— 从入门到实践》 中找到详细解释。本文只补充一些书上没有提到的内容。 最后的附录是一个如何打包应用的简单例子。 基本概念Docker 容器是 Docker 镜像的实例化，有点类似于 class 与 object 之间的关系。 虽然 Docker 看起来像是一个虚拟机，但是 Docker 不是一">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lousuan.github.io/2018/09/29/Docker 的一些要点/"/>
+
+
+
+
+
+  <title>Docker 的一些要点 | lousuan's Home</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lousuan's Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lousuan.github.io/2018/09/29/Docker 的一些要点/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lousuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lousuan's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Docker 的一些要点</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-29T00:40:06+08:00">
+                2018-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工具使用/" itemprop="url" rel="index">
+                    <span itemprop="name">工具使用</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文目录与的目录对应，主要是对书中相应的补充和理解。文中所提到的概念、章节、都可以在 <a href="https://yeasy.gitbooks.io/docker_practice/content/" target="_blank" rel="noopener">《Docker —— 从入门到实践》</a> 中找到详细解释。本文只补充一些书上没有提到的内容。</p>
+<p>最后的附录是一个如何打包应用的简单例子。</p>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>Docker 容器是 Docker 镜像的实例化，有点类似于 class 与 object 之间的关系。</p>
+<p>虽然 Docker 看起来像是一个虚拟机，但是 Docker 不是一个虚拟机，只是一个拥有独立环境的<strong>进程</strong>。</p>
+<h1 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h1><h2 id="镜像加速器"><a href="#镜像加速器" class="headerlink" title="镜像加速器"></a>镜像加速器</h2><p>经测试，Docker 官方提供的中国 registry mirror 速度正常，可以使用。</p>
+<h1 id="使用镜像"><a href="#使用镜像" class="headerlink" title="使用镜像"></a>使用镜像</h1><h2 id="使用-Dockerfile-定制镜像"><a href="#使用-Dockerfile-定制镜像" class="headerlink" title="使用 Dockerfile 定制镜像"></a>使用 Dockerfile 定制镜像</h2><blockquote>
+<p>……Dockerfile 是一个文本文件，其内包含了一条条的<strong>指令 (Instruction)</strong>，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。</p>
+</blockquote>
+<h3 id="FROM-指定基础镜像"><a href="#FROM-指定基础镜像" class="headerlink" title="FROM 指定基础镜像"></a>FROM 指定基础镜像</h3><blockquote>
+<p>……不以任何系统为基础，直接将可执行文件复制进镜像的做法并不罕见，比如 <a href="https://hub.docker.com/_/swarm/" target="_blank" rel="noopener"><code>swarm</code></a>、<a href="https://quay.io/repository/coreos/etcd" target="_blank" rel="noopener"><code>coreos/etcd</code></a>。对于 Linux 下静态编译的程序来说，并不需要有操作系统提供运行时支持，所需的一切库都已经在可执行文件里了，因此直接 <code>FROM scratch</code> 会让镜像体积更加小巧。使用 <a href="https://golang.org/" target="_blank" rel="noopener">Go 语言</a> 开发的应用很多会使用这种方式来制作镜像，这也是为什么有人认为 Go 是特别适合容器微服务架构的语言的原因之一。</p>
+</blockquote>
+<p>也可以使用一个超级小的 linux 发行版 <a href="https://hub.docker.com/_/alpine/" target="_blank" rel="noopener">alpine</a> 来部署应用，这样可以使用 <code>docker exec [容器名] ash</code>执行容器内部的 <code>ash</code>（alpine 的 bash）进入容器。</p>
+<h3 id="RUN-执行命令"><a href="#RUN-执行命令" class="headerlink" title="RUN 执行命令"></a>RUN 执行命令</h3><p>RUN 一次就会增加一层 Docker 镜像，尽量用 &amp;&amp; 把一部分“连续的” RUN 语句串起来（比如把编译过程的多个语句合并）。</p>
+<h3 id="镜像构建上下文（Context）"><a href="#镜像构建上下文（Context）" class="headerlink" title="镜像构建上下文（Context）"></a>镜像构建上下文（Context）</h3><blockquote>
+<p>这只是默认行为，实际上 <code>Dockerfile</code> 的文件名并不要求必须为 <code>Dockerfile</code>，而且并不要求必须位于上下文目录中，比如可以用 <code>-f ../Dockerfile.php</code> 参数指定某个文件作为 <code>Dockerfile</code>。</p>
+</blockquote>
+<p>在编写 docker-compose.yml 时，可以利用这一点，添加多个 dockerfile 。</p>
+<h3 id="Dockerfile-指令详解"><a href="#Dockerfile-指令详解" class="headerlink" title="Dockerfile 指令详解"></a>Dockerfile 指令详解</h3><h4 id="CMD-容器启动命令"><a href="#CMD-容器启动命令" class="headerlink" title="CMD 容器启动命令"></a>CMD 容器启动命令</h4><p>书中这一段非常重要，说明了 Docker 和虚拟机之间的区别。</p>
+<blockquote>
+<p>提到 <code>CMD</code> 就不得不提容器中应用在前台执行和后台执行的问题。这是初学者常出现的一个混淆。</p>
+<p>Docker 不是虚拟机，容器中的应用都应该以前台执行，而不是像虚拟机、物理机里面那样，用 upstart/systemd 去启动后台服务，容器内没有后台服务的概念。</p>
+<p>一些初学者将 <code>CMD</code> 写为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; CMD service nginx start</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>然后发现容器执行后就立即退出了。甚至在容器内去使用 <code>systemctl</code> 命令结果却发现根本执行不了。这就是因为没有搞明白前台、后台的概念，没有区分容器和虚拟机的差异，依旧在以传统虚拟机的角度去理解容器。</p>
+<p>对于容器而言，其启动程序就是容器应用进程，容器就是为了主进程而存在的，主进程退出，容器就失去了存在的意义，从而退出，其它辅助进程不是它需要关心的东西。</p>
+<p>而使用 <code>service nginx start</code> 命令，则是希望 upstart 来以后台守护进程形式启动 <code>nginx</code> 服务。而刚才说了 <code>CMD service nginx start</code> 会被理解为 <code>CMD [ &quot;sh&quot;, &quot;-c&quot;, &quot;service nginx start&quot;]</code>，因此主进程实际上是 <code>sh</code>。那么当 <code>service nginx start</code> 命令结束后，<code>sh</code> 也就结束了，<code>sh</code> 作为主进程退出了，自然就会令容器退出。</p>
+<p>正确的做法是直接执行 <code>nginx</code> 可执行文件，并且要求以前台形式运行。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>简单来说，一个虚拟机里面有一个运行着的操作系统，然后我们的 app 在操作系统上面运行；而 Docker 里面没有一个操作系统在运行，只有 <code>CMD</code> 启动的进程在运行，这个进程一旦退出，容器就没有存在的意义了。即使是使用系统镜像（比如 alpine）作为基础来构建的镜像，也只是包括了镜像的文件（alpine 的文件） 而已。</strong></p>
+<h2 id="Dockerfile-多阶段构建"><a href="#Dockerfile-多阶段构建" class="headerlink" title="Dockerfile 多阶段构建"></a>Dockerfile 多阶段构建</h2><p>这一节非常重要，使用多阶段构建可以大幅度减少镜像大小，在部署的时候可以节省时间。</p>
+<h1 id="使用网络"><a href="#使用网络" class="headerlink" title="使用网络"></a>使用网络</h1><blockquote>
+<p>如果你有多个容器之间需要互相连接，推荐使用 <a href="https://yeasy.gitbooks.io/docker_practice/compose" target="_blank" rel="noopener">Docker Compose</a>。</p>
+</blockquote>
+<p>书中没有说明使用 Docker Compose 如何连接多个容器。</p>
+<p>以下内容（Compose 中的网络）翻译自<a href="https://docs.docker.com/compose/networking/" target="_blank" rel="noopener">官网文档</a>：</p>
+<hr>
+<h2 id="Compose-中的网络"><a href="#Compose-中的网络" class="headerlink" title="Compose 中的网络"></a>Compose 中的网络</h2><blockquote>
+<p>以下内容只适用于 <a href="(https://docs.docker.com/compose/compose-file/compose-file-v2/">verion 2</a> ) 或 <a href="https://docs.docker.com/compose/compose-file/" target="_blank" rel="noopener">更高</a> 的Compose 文件。 <a href="https://docs.docker.com/compose/compose-file/compose-file-v1/" target="_blank" rel="noopener">version 1 (legacy)</a> 的 Compose file 不支持网络这一特性。</p>
+</blockquote>
+<p>Compose 默认为你的 app 设置一个网络。每个独立的 service 容器都连接到这个网络，各个容器都可以被这个网络的其他容器发现和访问，每个容器的域名与容器的名称一致。</p>
+<blockquote>
+<p><strong>注意</strong>: 你的 app 的网络会被命名为 “项目的名称”，默认为项目所在的文件夹的名字。你可以使用<a href="https://docs.docker.com/compose/reference/overview/" target="_blank" rel="noopener">参数 <code>--project-name</code> </a> 或者 <a href="https://docs.docker.com/compose/reference/envvars/#compose-project-name" target="_blank" rel="noopener">环境变量 <code>COMPOSE_PROJECT_NAME</code></a> 来重写项目的名称。</p>
+</blockquote>
+<p>比如，假设你的 app 在文件夹 myapp 中，并且你的 <code>docker-compose.yml</code> 类似这样：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3"</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  web:</span></span><br><span class="line"><span class="attr">    build:</span> <span class="string">.</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"8000:8000"</span></span><br><span class="line"><span class="attr">  db:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">postgres</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"8001:5432"</span></span><br></pre></td></tr></table></figure>
+<p>当你运行 <code>docker-compose up</code> 时：</p>
+<ol>
+<li>Docker 会创建一个名为 <code>myapp_default</code> 的网络。</li>
+<li>Docker 会根据 <code>web</code> 的配置创建一个容器。这个容器会连接到 <code>myapp_default</code> ，容器的域名为 <code>web</code>。</li>
+<li>Docker 会根据 <code>db</code> 的配置创建一个容器。这个容器会连接到 <code>myapp_default</code> ，容器的域名为 <code>db</code>。</li>
+</ol>
+<blockquote>
+<p><strong>In v2.1+, overlay networks are always attachable</strong></p>
+<p>Starting in Compose file format 2.1, overlay networks are always created as <code>attachable</code>, and this is not configurable. This means that standalone containers can connect to overlay networks.</p>
+<p>In Compose file format 3.x, you can optionally set the <code>attachable</code> property to <code>false</code>.</p>
+</blockquote>
+<p>每个容器可以通过查询域名 <code>web</code> 或者 <code>db</code> 来获得对应容器的 IP 地址。例如，<code>web</code> 的程序代码可以访问 <code>postres://db:5432</code> 这个 URL 来连接数据库。</p>
+<p>这里需要特别指出 <code>HOST_PORT</code> 和 <code>CONTAINER_PORT</code> 之间的去别。在上面的例子中，以 <code>db</code> 为例，它的 <code>HOST_PORT</code> 是 <code>8001</code> ， <code>CONTAINER_PORT</code> 是 <code>5432</code> （postgres的默认端口）。各个容器之间的通讯应使用 <code>CONTAINER_PORT</code> 。如果有定义 <code>HOST_PORY</code> ，那么容器内的服务可以通过  <code>HOST_PORY</code> 访问。</p>
+<p>在 <code>web</code> 容器中，<code>db</code> 的链接应当是 <code>postgres://db:5432</code> ，而从物理机访问，链接应当是 <code>postgres://{DOCKER 所在物理机的地址}:8001</code>。</p>
+<h1 id="附录：Dockerfile-编写示例"><a href="#附录：Dockerfile-编写示例" class="headerlink" title="附录：Dockerfile 编写示例"></a>附录：Dockerfile 编写示例</h1><p>以下是一个完整的打包应用的例子：</p>
+<p>假设我们现在有一个使用 beego 开发的项目 <code>myapp</code>，而且需要一个 <code>MySQL</code>数据库。我们希望把这两个分别打包成两个镜像，然后使用 docker-compose 来启动。</p>
+<h2 id="构建项目镜像"><a href="#构建项目镜像" class="headerlink" title="构建项目镜像"></a>构建项目镜像</h2><p>首先，需要编写一个 Dockerfile ，这个 Dockerfile 构建的镜像，能包含最后编译完成的 beego 项目。</p>
+<p>在 <code>myapp</code> 文件夹底下新建一个 Dockerfile。使用 <code>golang:alpine</code> 作为基础镜像来编译项目。</p>
+<p>关于<strong>镜像</strong>、<strong>容器</strong>请看书中 ”基本概念“一节。</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> golang:alpine as builder</span><br><span class="line"></span><br><span class="line"><span class="keyword">FROM</span> alpine as prod</span><br></pre></td></tr></table></figure>
+<p><code>golang:alpine</code> 里面有 golang 的编译环境了，但是我们需要安装一下 beego 和 MySQL 驱动。</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> golang:alpine as builder</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span> apk --no-cache add git \</span><br><span class="line">    &amp;&amp; go get github.com/astaxie/beego \</span><br><span class="line">    &amp;&amp; go get -u github.com/go-sql-driver/mysql</span><br><span class="line">    </span><br><span class="line">FROM alpine as prod</span><br></pre></td></tr></table></figure>
+<p>这里不建议写成多个 <code>RUN</code> 语句，原因见书中 ”<strong>使用 Dockerfile 定制镜像</strong>“ 一节。</p>
+<p>接下来可以编译项目了。把项目复制到镜像的 <code>$GOPATH/src</code> 里面，然后设置一下 <code>WORKDIR</code> ，（当设定的 <code>WORKDIR</code> 不存在的时候会自动创建），最后 <code>go build</code>。<code>golang:alpine</code> 里默认的 <code>$GOPATH</code> 是 <code>/go</code>。 </p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> golang:alpine</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span> apk --no-cache add git \</span><br><span class="line">    &amp;&amp; go get github.com/astaxie/beego \</span><br><span class="line">    &amp;&amp; go get -u github.com/go-sql-driver/mysql</span><br><span class="line"></span><br><span class="line"># . 表示上下文。关于上下文查看书中镜像构建上下文（Context）一节</span><br><span class="line">COPY . /go/src/myapp </span><br><span class="line"></span><br><span class="line">WORKDIR /go/src/myapp</span><br><span class="line"></span><br><span class="line">RUN go build</span><br><span class="line"></span><br><span class="line">FROM alpine as prod</span><br></pre></td></tr></table></figure>
+<p>接下来把编译好的文件从 <code>golang:alpine</code> 里复制到我们最后要生成的镜像里面，然后运行。这里因为 <code>COPY</code> 只能同时复制一个目录或文件，而我们需要 <code>conf/app.conf</code> 和 编译好的可执行文件 <code>myapp</code>。所以简单的办法是复制整个项目到下一层镜像（prod）里面（也可以分两次复制）。</p>
+<p>当 <code>COPY</code> 一个目录时，实际复制的是目录下的文件，而不是目录本身。 </p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> golang:alpine as builder</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span> apk --no-cache add git \</span><br><span class="line">    &amp;&amp; go get github.com/astaxie/beego \</span><br><span class="line">    &amp;&amp; go get -u github.com/go-sql-driver/mysql</span><br><span class="line"></span><br><span class="line"># . 表示上下文。关于上下文查看书中镜像构建上下文（Context）一节</span><br><span class="line">COPY . /go/src/myapp </span><br><span class="line"></span><br><span class="line">WORKDIR /go/src/myapp</span><br><span class="line">RUN go build</span><br><span class="line"></span><br><span class="line">FROM alpine as prod</span><br><span class="line"></span><br><span class="line">WORKDIR /go/src/myapp/</span><br><span class="line">COPY --from=builder /go/src/myapp/ .</span><br></pre></td></tr></table></figure>
+<p>最后就是声明<code>myapp</code> 使用的端口 <code>8080</code>，然后<strong>前台运行</strong>（前台运行原因见 “CMD 容器启动命令” 一节）。</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> golang:alpine as builder</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span> apk --no-cache add git \</span><br><span class="line">    &amp;&amp; go get github.com/astaxie/beego \</span><br><span class="line">    &amp;&amp; go get -u github.com/go-sql-driver/mysql</span><br><span class="line"></span><br><span class="line"># . 表示上下文。关于上下文查看书中镜像构建上下文（Context）一节</span><br><span class="line">COPY . /go/src/myapp </span><br><span class="line"></span><br><span class="line">WORKDIR /go/src/myapp</span><br><span class="line">RUN go build</span><br><span class="line"></span><br><span class="line">FROM alpine as prod</span><br><span class="line"></span><br><span class="line">WORKDIR /go/src/myapp/</span><br><span class="line">COPY --from=builder /go/src/myapp/ . </span><br><span class="line"></span><br><span class="line">EXPOSE 8080</span><br><span class="line">CMD ["./myapp"]</span><br></pre></td></tr></table></figure>
+<p>最后我们发现，在 builder 阶段我们用了两次 <code>RUN</code>，这就多构建了一层多余的镜像。我们可以去掉一次 <code>RUN</code>。</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> golang:alpine as builder</span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span> /go/src</span><br><span class="line"># . 表示上下文。关于上下文查看书中镜像构建上下文（Context）一节</span><br><span class="line">COPY . /go/src/myapp </span><br><span class="line"></span><br><span class="line">RUN apk --no-cache add git \</span><br><span class="line">    &amp;&amp; go get github.com/astaxie/beego \</span><br><span class="line">    &amp;&amp; go get -u github.com/go-sql-driver/mysql \</span><br><span class="line">    &amp;&amp; go build</span><br><span class="line"></span><br><span class="line">FROM alpine as prod</span><br><span class="line"></span><br><span class="line">WORKDIR /go/src/myapp/</span><br><span class="line">COPY --from=builder /go/src/myapp/ .</span><br><span class="line"></span><br><span class="line">EXPOSE 8080</span><br><span class="line">CMD ["./myapp"]</span><br></pre></td></tr></table></figure>
+<h2 id="构建数据库镜像"><a href="#构建数据库镜像" class="headerlink" title="构建数据库镜像"></a>构建数据库镜像</h2><p>MySQL 已经有打包好的 docker 镜像了，但是我们希望做一些数据库初始化工作（比如创建数据表之类的）。在 MySQL 官方镜像中，已经设定了 <code>ENTRYPOINT</code>，里面会调用 <code>/entrypoint.sh</code> 这个脚本。这个脚本的内容，有一段内容就是从固定目录下遍历所有的<code>.sh</code> 和 <code>.sql</code> 后缀的文件，然后执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> /docker-entrypoint-initdb.d/*; <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">"<span class="variable">$f</span>"</span> <span class="keyword">in</span></span><br><span class="line">    	*.sh)     <span class="built_in">echo</span> <span class="string">"<span class="variable">$0</span>: running <span class="variable">$f</span>"</span>; . <span class="string">"<span class="variable">$f</span>"</span> ;;</span><br><span class="line">    	*.sql)    <span class="built_in">echo</span> <span class="string">"<span class="variable">$0</span>: running <span class="variable">$f</span>"</span>; <span class="string">"<span class="variable">$&#123;mysql[@]&#125;</span>"</span> &lt; <span class="string">"<span class="variable">$f</span>"</span>; <span class="built_in">echo</span> ;;</span><br><span class="line">        *.sql.gz) <span class="built_in">echo</span> <span class="string">"<span class="variable">$0</span>: running <span class="variable">$f</span>"</span>; gunzip -c <span class="string">"<span class="variable">$f</span>"</span> | <span class="string">"<span class="variable">$&#123;mysql[@]&#125;</span>"</span>; <span class="built_in">echo</span> ;;</span><br><span class="line">        *)        <span class="built_in">echo</span> <span class="string">"<span class="variable">$0</span>: ignoring <span class="variable">$f</span>"</span> ;;</span><br><span class="line">     <span class="keyword">esac</span></span><br><span class="line">     <span class="built_in">echo</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>所以我们在 <code>myapp</code> 底下新建一个目录 <code>mysql</code>，然后把要初始化数据库的脚本 <code>init.sql</code> 放到这个目录下，并且创建一个 <code>mysql</code> 的 Dokcerfile。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">├── mysql</span><br><span class="line">│   ├── Dockerfile</span><br><span class="line">│   └── init.sql</span><br></pre></td></tr></table></figure>
+<p>把 init.sql 复制到镜像里面的 <code>docker-entrypoint-initdb.d</code> 目录：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> mysql:<span class="number">5.7</span> </span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> init.sql /docker-entrypoint-initdb.d</span></span><br></pre></td></tr></table></figure>
+<h2 id="编写-docker-compose-yml"><a href="#编写-docker-compose-yml" class="headerlink" title="编写 docker-compose.yml"></a>编写 docker-compose.yml</h2><p>docker-compose 是一个可以快速部署多个容器的工具，详细的介绍见书中 “Docker 三剑客之 Compose 项目” 。</p>
+<p>在 <code>myapp</code> 目录下创建一个 <code>docker-compose.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  web:</span></span><br><span class="line"><span class="attr">    build:</span></span><br><span class="line"><span class="attr">      context:</span> <span class="string">.</span></span><br><span class="line"><span class="attr">      dockerfile:</span> <span class="string">Dockerfile</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">web</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"8080:8080"</span></span><br><span class="line"><span class="attr">    depends_on:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">mydb</span></span><br><span class="line"></span><br><span class="line"><span class="attr">  mydb:</span></span><br><span class="line"><span class="attr">    build:</span> </span><br><span class="line"><span class="attr">      context:</span> <span class="string">mysql/</span> <span class="comment"># 指定上下文为 myapp/mysql</span></span><br><span class="line"><span class="attr">      dockerfile:</span> <span class="string">Dockerfile</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">mydb</span> <span class="comment"># web 访问 mydb:3306 就可以访问数据库了</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"3306:3306"</span> </span><br><span class="line"><span class="attr">    environment:</span> </span><br><span class="line"><span class="bullet">      -</span> <span class="string">MYSQL_ROOT_PASSWORD=root</span> <span class="comment">#指定数据库 root 用户的密码</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line">  	  <span class="bullet">-</span> <span class="string">/data/mysql/:/var/lib/mysql</span> <span class="comment">#注意，不要挂载项目所在目录</span></span><br></pre></td></tr></table></figure>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>在 <code>myapp</code> 目录下运行 <code>docker-compose up</code> ，就可以启动了。</p>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><p>上面的 <code>docker-compose.yml</code> 没有解决一个问题，就是 <code>web</code> 应用和数据库的启动顺序问题。这个有几个解决方案：</p>
+<ol>
+<li>多次尝试链接</li>
+<li>使用脚本，结合 <code>ENTRYPOINT</code>，延迟启动 <code>web</code> 。</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+            <a href="/tags/SRE/" rel="tag"># SRE</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/28/Windows 装机软件列表/" rel="next" title="Windows 装机软件列表">
+                <i class="fa fa-chevron-left"></i> Windows 装机软件列表
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lousuan</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装Docker"><span class="nav-number">2.</span> <span class="nav-text">安装Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#镜像加速器"><span class="nav-number">2.1.</span> <span class="nav-text">镜像加速器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用镜像"><span class="nav-number">3.</span> <span class="nav-text">使用镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Dockerfile-定制镜像"><span class="nav-number">3.1.</span> <span class="nav-text">使用 Dockerfile 定制镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FROM-指定基础镜像"><span class="nav-number">3.1.1.</span> <span class="nav-text">FROM 指定基础镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RUN-执行命令"><span class="nav-number">3.1.2.</span> <span class="nav-text">RUN 执行命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#镜像构建上下文（Context）"><span class="nav-number">3.1.3.</span> <span class="nav-text">镜像构建上下文（Context）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dockerfile-指令详解"><span class="nav-number">3.1.4.</span> <span class="nav-text">Dockerfile 指令详解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CMD-容器启动命令"><span class="nav-number">3.1.4.1.</span> <span class="nav-text">CMD 容器启动命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerfile-多阶段构建"><span class="nav-number">3.2.</span> <span class="nav-text">Dockerfile 多阶段构建</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用网络"><span class="nav-number">4.</span> <span class="nav-text">使用网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Compose-中的网络"><span class="nav-number">4.1.</span> <span class="nav-text">Compose 中的网络</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录：Dockerfile-编写示例"><span class="nav-number">5.</span> <span class="nav-text">附录：Dockerfile 编写示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#构建项目镜像"><span class="nav-number">5.1.</span> <span class="nav-text">构建项目镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建数据库镜像"><span class="nav-number">5.2.</span> <span class="nav-text">构建数据库镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写-docker-compose-yml"><span class="nav-number">5.3.</span> <span class="nav-text">编写 docker-compose.yml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动"><span class="nav-number">5.4.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他问题"><span class="nav-number">5.5.</span> <span class="nav-text">其他问题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lousuan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
