@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="TCP/IP," />
+  <meta name="keywords" content="C++," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="应用层：HTTP、STMP、TLS、QUIC 运输层：TCP、UDP 网络层：IP 链路层 物理层  TLS（SSL）UDPUDP 是一个非常简单的协议，只做了运输协议能做的最少工作：  复用/分解 少量的差错检测（无法纠错）：UDP 首部检验和  有以下几个特点：  关于何时、发送什么数据的应用层控制更为精细 无需连接建立 无连接状态，这使得服务器无需维护状态，可以支持更多的链接。 分组首部开">
-<meta name="keywords" content="TCP&#x2F;IP">
+<meta name="description" content="今天做一个题目的时候，题目提供的输入是这样的   首先是数量未知的整数，以空格分割 接下来是一个逗号 接下来是一个整数结尾例子：1 2 3 4 5,10   一开始考虑全部读取字符类型，然后进行转换。但是字符每次只能读取一位，而整数有好几位，这样比较麻烦。后来想到利用 cin 来读取，如果出错就跳过（因为逗号没用）。根据这里的说法，修改读取数据代码如下： 123456789101112131415">
+<meta name="keywords" content="C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机网络的一些问题">
-<meta property="og:url" content="http://lousuan.github.io/2018/10/13/计算机网络/index.html">
+<meta property="og:title" content="C++中std::cin处理错误输入的问题">
+<meta property="og:url" content="http://lousuan.github.io/2018/10/19/C++中std::cin处理错误输入的问题/index.html">
 <meta property="og:site_name" content="lousuan&#39;s Home">
-<meta property="og:description" content="应用层：HTTP、STMP、TLS、QUIC 运输层：TCP、UDP 网络层：IP 链路层 物理层  TLS（SSL）UDPUDP 是一个非常简单的协议，只做了运输协议能做的最少工作：  复用/分解 少量的差错检测（无法纠错）：UDP 首部检验和  有以下几个特点：  关于何时、发送什么数据的应用层控制更为精细 无需连接建立 无连接状态，这使得服务器无需维护状态，可以支持更多的链接。 分组首部开">
+<meta property="og:description" content="今天做一个题目的时候，题目提供的输入是这样的   首先是数量未知的整数，以空格分割 接下来是一个逗号 接下来是一个整数结尾例子：1 2 3 4 5,10   一开始考虑全部读取字符类型，然后进行转换。但是字符每次只能读取一位，而整数有好几位，这样比较麻烦。后来想到利用 cin 来读取，如果出错就跳过（因为逗号没用）。根据这里的说法，修改读取数据代码如下： 123456789101112131415">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-13T07:35:06.784Z">
+<meta property="og:updated_time" content="2018-10-18T17:32:03.144Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="计算机网络的一些问题">
-<meta name="twitter:description" content="应用层：HTTP、STMP、TLS、QUIC 运输层：TCP、UDP 网络层：IP 链路层 物理层  TLS（SSL）UDPUDP 是一个非常简单的协议，只做了运输协议能做的最少工作：  复用/分解 少量的差错检测（无法纠错）：UDP 首部检验和  有以下几个特点：  关于何时、发送什么数据的应用层控制更为精细 无需连接建立 无连接状态，这使得服务器无需维护状态，可以支持更多的链接。 分组首部开">
+<meta name="twitter:title" content="C++中std::cin处理错误输入的问题">
+<meta name="twitter:description" content="今天做一个题目的时候，题目提供的输入是这样的   首先是数量未知的整数，以空格分割 接下来是一个逗号 接下来是一个整数结尾例子：1 2 3 4 5,10   一开始考虑全部读取字符类型，然后进行转换。但是字符每次只能读取一位，而整数有好几位，这样比较麻烦。后来想到利用 cin 来读取，如果出错就跳过（因为逗号没用）。根据这里的说法，修改读取数据代码如下： 123456789101112131415">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://lousuan.github.io/2018/10/13/计算机网络/"/>
+  <link rel="canonical" href="http://lousuan.github.io/2018/10/19/C++中std::cin处理错误输入的问题/"/>
 
 
 
 
 
-  <title>计算机网络的一些问题 | lousuan's Home</title>
+  <title>C++中std::cin处理错误输入的问题 | lousuan's Home</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lousuan.github.io/2018/10/13/计算机网络/">
+    <link itemprop="mainEntityOfPage" href="http://lousuan.github.io/2018/10/19/C++中std::cin处理错误输入的问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lousuan">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">计算机网络的一些问题</h1>
+          <h1 class="post-title" itemprop="name headline">C++中std::cin处理错误输入的问题</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-13T15:35:06+08:00">
-                2018-10-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-19T01:32:03+08:00">
+                2018-10-19
               </time>
             
 
@@ -342,62 +342,19 @@
       
 
       
-        <ul>
-<li>应用层：HTTP、STMP、TLS、QUIC</li>
-<li>运输层：TCP、UDP</li>
-<li>网络层：IP</li>
-<li>链路层</li>
-<li>物理层</li>
-</ul>
-<h1 id="TLS（SSL）"><a href="#TLS（SSL）" class="headerlink" title="TLS（SSL）"></a>TLS（SSL）</h1><h1 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h1><p>UDP 是一个非常简单的协议，<strong>只做了运输协议能做的最少工作</strong>：</p>
+        <p>今天做一个题目的时候，题目提供的输入是这样的</p>
+<blockquote>
 <ol>
-<li>复用/分解</li>
-<li>少量的<strong>差错检测</strong>（无法纠错）：UDP 首部检验和</li>
+<li>首先是数量未知的整数，以空格分割</li>
+<li>接下来是一个逗号</li>
+<li>接下来是一个整数结尾<br>例子：1 2 3 4 5,10</li>
 </ol>
-<p>有以下几个特点：</p>
-<ol>
-<li>关于何时、发送什么数据的应用层控制更为精细</li>
-<li>无需连接建立</li>
-<li>无连接状态，这使得服务器无需维护状态，可以支持更多的链接。</li>
-<li>分组首部开销小</li>
-</ol>
-<p>UDP 也可以提供稳定可靠的连接，也可以有拥塞控制，只需要在应用层进行处理：例如 QUIC。</p>
-<ul>
-<li>HTTP/2 + TLS 1.2 + TCP</li>
-<li>HTTP/2 API + QUIC + UDP</li>
-</ul>
-<h1 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h1><p>TCP 需要四次挥手，但是握手只需要三次。<br>本质上来说，不管是建立连接还是断开连接，都是一方通知另一方，另一方回应一个确认（ACK）。所以四次是必须的。握手只需三次，是因为ACK包和请求建立连接的包可以是同一个；挥手则不然，需要等待应用层确定没有需要发送的数据，方可断开连接。</p>
-<h1 id="游戏网络协议的设计"><a href="#游戏网络协议的设计" class="headerlink" title="游戏网络协议的设计"></a>游戏网络协议的设计</h1><p>选择 TCP 还是 UDP，主要要看游戏类型：</p>
-<ul>
-<li><p>如果是实时性要求不高的游戏，一般可以考虑采用 TCP，同时配合一些动画等延迟画面的手段，来掩盖网络延时。</p>
-<ul>
-<li>炉石传说的卡牌动画就可以掩盖一波网络延迟</li>
-</ul>
-</li>
-<li><p>实时性要求高的游戏，一般不能用 TCP，因为 TCP 不能自主控制发包，而且有队列头阻塞问题。</p>
-<ul>
-<li>对于部分游戏可以采用预测的方式模拟出丢失的部分包，例如 FPS 游戏</li>
-</ul>
-</li>
-</ul>
-<h1 id="多媒体网络协议"><a href="#多媒体网络协议" class="headerlink" title="多媒体网络协议"></a>多媒体网络协议</h1><p>目前视频流主要分三种：UDP、HTTP、适应性 HTTP。这三种都采用客户端应用缓存技术。</p>
-<ul>
-<li><p>UDP：三个缺点</p>
-<ol>
-<li>带宽变化的时候可能会大量丢包</li>
-<li>需要如 RTSP 媒体控制服务器</li>
-<li>防火墙会针对 UDP 限流</li>
-</ol>
-</li>
-<li><p>HTTP：通常的实现</p>
-</li>
-<li>适应性HTTP：不同视频质量适应不同带宽</li>
-</ul>
-<h1 id="UDP-如何保证质量？"><a href="#UDP-如何保证质量？" class="headerlink" title="UDP 如何保证质量？"></a>UDP 如何保证质量？</h1><ol>
-<li>前向纠错：比如每个n个包多发一个冗余包，或者带一个低质量的冗余信息。</li>
-<li>交织发包：打乱顺序，减少连续丢包的可能。</li>
-</ol>
-
+</blockquote>
+<p>一开始考虑全部读取字符类型，然后进行转换。但是字符每次只能读取一位，而整数有好几位，这样比较麻烦。后来想到利用 <code>cin</code> 来读取，如果出错就跳过（因为逗号没用）。根据<a href="https://bbs.csdn.net/topics/390056545" target="_blank" rel="noopener">这里</a>的说法，修改读取数据代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; numbers;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> lastnum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; x) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">cin</span>.fail()) &#123;</span><br><span class="line">            <span class="built_in">cin</span>.clear();</span><br><span class="line">            <span class="built_in">cin</span>.sync();</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; lastnum;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        numbers.push_back(x);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; lastnum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实际执行程序，发现无论逗号后面的数是什么，输出的 <code>lastnum</code> 都是 <code>0</code> 。</p>
+<p>最后在<a href="https://stackoverflow.com/questions/19483126/whats-the-difference-between-whilecin-and-whilecin-num" target="_blank" rel="noopener">这里</a>找到了答案，原来是 <code>while(cin &gt;&gt; x)</code> 的问题：当输入逗号的时候，<code>cin&gt;&gt;x</code> 为 <code>false</code> 程序直接跳出循环，根本不执行循环内的 <code>if</code> 语句。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; numbers;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> lastnum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; x) &#123;</span><br><span class="line">        numbers.push_back(x);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cin</span>.clear();</span><br><span class="line">    <span class="built_in">cin</span>.sync();</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; lastnum;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; lastnum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -414,7 +371,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/TCP-IP/" rel="tag"># TCP/IP</a>
+            <a href="/tags/C/" rel="tag"># C++</a>
           
         </div>
       
@@ -427,8 +384,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/02/Windows 装机软件列表/" rel="next" title="Windows 装机软件列表">
-                <i class="fa fa-chevron-left"></i> Windows 装机软件列表
+              <a href="/2018/10/13/计算机网络/" rel="next" title="计算机网络的一些问题">
+                <i class="fa fa-chevron-left"></i> 计算机网络的一些问题
               </a>
             
           </div>
@@ -436,10 +393,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/19/C++中std::cin处理错误输入的问题/" rel="prev" title="C++中std::cin处理错误输入的问题">
-                C++中std::cin处理错误输入的问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -491,17 +444,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -561,22 +505,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TLS（SSL）"><span class="nav-number">1.</span> <span class="nav-text">TLS（SSL）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UDP"><span class="nav-number">2.</span> <span class="nav-text">UDP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP"><span class="nav-number">3.</span> <span class="nav-text">TCP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#游戏网络协议的设计"><span class="nav-number">4.</span> <span class="nav-text">游戏网络协议的设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多媒体网络协议"><span class="nav-number">5.</span> <span class="nav-text">多媒体网络协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UDP-如何保证质量？"><span class="nav-number">6.</span> <span class="nav-text">UDP 如何保证质量？</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
