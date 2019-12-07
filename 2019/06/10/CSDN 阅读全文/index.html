@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="脚本," />
 
 
 
@@ -79,14 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://lousuan.github.io/categories/index.html">
+<meta name="description" content="今天偶然间发现一个现象：CSDN 的博客，不登录的话，看上四五篇之后，点击“阅读全文”会自动跳到登录页面，换一个浏览器又可以看了。 在前端同学的指点下，查看 local storage，发现有一个变量 anonymousUserLimit 看起来非常可疑，尝试将其删除之后，就可以正常阅读全文，而且每次阅读全文，这个变量都会 ++，到 5 之后就跳转到登录页了。所以决定写一个脚本，每次打开 CSDN">
+<meta name="keywords" content="脚本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSDN 自动展开全文">
+<meta property="og:url" content="http://lousuan.github.io/2019/06/10/CSDN 阅读全文/index.html">
 <meta property="og:site_name" content="lousuan&#39;s Home">
+<meta property="og:description" content="今天偶然间发现一个现象：CSDN 的博客，不登录的话，看上四五篇之后，点击“阅读全文”会自动跳到登录页面，换一个浏览器又可以看了。 在前端同学的指点下，查看 local storage，发现有一个变量 anonymousUserLimit 看起来非常可疑，尝试将其删除之后，就可以正常阅读全文，而且每次阅读全文，这个变量都会 ++，到 5 之后就跳转到登录页了。所以决定写一个脚本，每次打开 CSDN">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-28T08:07:34.613Z">
+<meta property="og:updated_time" content="2018-12-05T01:41:47.637Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
+<meta name="twitter:title" content="CSDN 自动展开全文">
+<meta name="twitter:description" content="今天偶然间发现一个现象：CSDN 的博客，不登录的话，看上四五篇之后，点击“阅读全文”会自动跳到登录页面，换一个浏览器又可以看了。 在前端同学的指点下，查看 local storage，发现有一个变量 anonymousUserLimit 看起来非常可疑，尝试将其删除之后，就可以正常阅读全文，而且每次阅读全文，这个变量都会 ++，到 5 之后就跳转到登录页了。所以决定写一个脚本，每次打开 CSDN">
 
 
 
@@ -116,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://lousuan.github.io/categories/"/>
+  <link rel="canonical" href="http://lousuan.github.io/2019/06/10/CSDN 阅读全文/"/>
 
 
 
 
 
-  <title>categories | lousuan's Home</title>
+  <title>CSDN 自动展开全文 | lousuan's Home</title>
   
 
 
@@ -237,40 +241,173 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lousuan.github.io/2019/06/10/CSDN 阅读全文/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lousuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lousuan's Home">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">categories</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                6 categories in total
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Golang/">Golang</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/基础知识/">基础知识</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/实用工具/">实用工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具使用/">工具使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/油猴脚本/">油猴脚本</a><span class="category-list-count">1</span></li></ul>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">CSDN 自动展开全文</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-10T02:31:46+08:00">
+                2019-06-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/油猴脚本/" itemprop="url" rel="index">
+                    <span itemprop="name">油猴脚本</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>今天偶然间发现一个现象：CSDN 的博客，不登录的话，看上四五篇之后，点击“阅读全文”会自动跳到登录页面，换一个浏览器又可以看了。</p>
+<p>在前端同学的指点下，查看 local storage，发现有一个变量 <code>anonymousUserLimit</code> 看起来非常可疑，尝试将其删除之后，就可以正常阅读全文，而且每次阅读全文，这个变量都会 <code>++</code>，到 5 之后就跳转到登录页了。所以决定写一个脚本，每次打开 CSDN 的页面，自动删除这个变量。</p>
+<p>研究了一通之后，感觉可以连展开全文也让脚本完成，于是就有了下面的脚本。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         csdn 阅读全文</span></span><br><span class="line"><span class="comment">// @namespace    http://tampermonkey.net/</span></span><br><span class="line"><span class="comment">// @version      0.1</span></span><br><span class="line"><span class="comment">// @description  解除 CSDN 阅读全文次数限制，自动展开全文</span></span><br><span class="line"><span class="comment">// @author       lousuan</span></span><br><span class="line"><span class="comment">// @match        https://blog.csdn.net/*/article/details/*</span></span><br><span class="line"><span class="comment">// @grant        none</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">    'use strict'</span>;</span><br><span class="line">    localStorage.removeItem(<span class="string">'anonymousUserLimit'</span>);</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"btn-readmore"</span>).click();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/脚本/" rel="tag"># 脚本</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/10/The Golang Blog/" rel="next" title="Golang 技术文章精选">
+                <i class="fa fa-chevron-left"></i> Golang 技术文章精选
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/10/C++中std::cin处理错误输入的问题/" rel="prev" title="C++中std::cin处理错误输入的问题">
+                C++中std::cin处理错误输入的问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -279,6 +416,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
