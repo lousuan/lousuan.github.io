@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="脚本," />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="今天偶然间发现一个现象：CSDN 的博客，不登录的话，看上四五篇之后，点击“阅读全文”会自动跳到登录页面，换一个浏览器又可以看了。 在前端同学的指点下，查看 local storage，发现有一个变量 anonymousUserLimit 看起来非常可疑，尝试将其删除之后，就可以正常阅读全文，而且每次阅读全文，这个变量都会 ++，到 5 之后就跳转到登录页了。所以决定写一个脚本，每次打开 CSDN">
-<meta name="keywords" content="脚本">
+<meta name="description" content="最近因为工作需要，需要改用 Gradle 构建 Java 项目。Maven 是 Java 专用的 构建工具，基于 pom.xml 对构建过程进行管理。Gradle 也是构建工具，根据官方的说法，性能更好，功能更灵活、强大。本以为迁移不会是一个复杂的工作，没想到实际困难程度比预想的高不少，花了大概两三天才搞明白。 gradle 中最常用的几个与 Java 编译、打包相关的插件，有以下几个  java">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSDN 自动展开全文">
-<meta property="og:url" content="http://lousuan.github.io/2019/06/10/CSDN 阅读全文/index.html">
+<meta property="og:title" content="面向 Maven 用户的 Gradle 指南">
+<meta property="og:url" content="http://lousuan.github.io/2022/07/31/面向 Maven 用户的 Gradle 指南/index.html">
 <meta property="og:site_name" content="lousuan&#39;s Home">
-<meta property="og:description" content="今天偶然间发现一个现象：CSDN 的博客，不登录的话，看上四五篇之后，点击“阅读全文”会自动跳到登录页面，换一个浏览器又可以看了。 在前端同学的指点下，查看 local storage，发现有一个变量 anonymousUserLimit 看起来非常可疑，尝试将其删除之后，就可以正常阅读全文，而且每次阅读全文，这个变量都会 ++，到 5 之后就跳转到登录页了。所以决定写一个脚本，每次打开 CSDN">
+<meta property="og:description" content="最近因为工作需要，需要改用 Gradle 构建 Java 项目。Maven 是 Java 专用的 构建工具，基于 pom.xml 对构建过程进行管理。Gradle 也是构建工具，根据官方的说法，性能更好，功能更灵活、强大。本以为迁移不会是一个复杂的工作，没想到实际困难程度比预想的高不少，花了大概两三天才搞明白。 gradle 中最常用的几个与 Java 编译、打包相关的插件，有以下几个  java">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-05T01:41:47.637Z">
+<meta property="og:updated_time" content="2022-08-07T13:53:23.772Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSDN 自动展开全文">
-<meta name="twitter:description" content="今天偶然间发现一个现象：CSDN 的博客，不登录的话，看上四五篇之后，点击“阅读全文”会自动跳到登录页面，换一个浏览器又可以看了。 在前端同学的指点下，查看 local storage，发现有一个变量 anonymousUserLimit 看起来非常可疑，尝试将其删除之后，就可以正常阅读全文，而且每次阅读全文，这个变量都会 ++，到 5 之后就跳转到登录页了。所以决定写一个脚本，每次打开 CSDN">
+<meta name="twitter:title" content="面向 Maven 用户的 Gradle 指南">
+<meta name="twitter:description" content="最近因为工作需要，需要改用 Gradle 构建 Java 项目。Maven 是 Java 专用的 构建工具，基于 pom.xml 对构建过程进行管理。Gradle 也是构建工具，根据官方的说法，性能更好，功能更灵活、强大。本以为迁移不会是一个复杂的工作，没想到实际困难程度比预想的高不少，花了大概两三天才搞明白。 gradle 中最常用的几个与 Java 编译、打包相关的插件，有以下几个  java">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://lousuan.github.io/2019/06/10/CSDN 阅读全文/"/>
+  <link rel="canonical" href="http://lousuan.github.io/2022/07/31/面向 Maven 用户的 Gradle 指南/"/>
 
 
 
 
 
-  <title>CSDN 自动展开全文 | lousuan's Home</title>
+  <title>面向 Maven 用户的 Gradle 指南 | lousuan's Home</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lousuan.github.io/2019/06/10/CSDN 阅读全文/">
+    <link itemprop="mainEntityOfPage" href="http://lousuan.github.io/2022/07/31/面向 Maven 用户的 Gradle 指南/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lousuan">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CSDN 自动展开全文</h1>
+          <h1 class="post-title" itemprop="name headline">面向 Maven 用户的 Gradle 指南</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-10T02:31:46+08:00">
-                2019-06-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-07-31T23:53:33+08:00">
+                2022-07-31
               </time>
             
 
@@ -305,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/油猴脚本/" itemprop="url" rel="index">
-                    <span itemprop="name">油猴脚本</span>
+                  <a href="/categories/工具使用/" itemprop="url" rel="index">
+                    <span itemprop="name">工具使用</span>
                   </a>
                 </span>
 
@@ -342,10 +342,25 @@
       
 
       
-        <p>今天偶然间发现一个现象：CSDN 的博客，不登录的话，看上四五篇之后，点击“阅读全文”会自动跳到登录页面，换一个浏览器又可以看了。</p>
-<p>在前端同学的指点下，查看 local storage，发现有一个变量 <code>anonymousUserLimit</code> 看起来非常可疑，尝试将其删除之后，就可以正常阅读全文，而且每次阅读全文，这个变量都会 <code>++</code>，到 5 之后就跳转到登录页了。所以决定写一个脚本，每次打开 CSDN 的页面，自动删除这个变量。</p>
-<p>研究了一通之后，感觉可以连展开全文也让脚本完成，于是就有了下面的脚本。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         csdn 阅读全文</span></span><br><span class="line"><span class="comment">// @namespace    http://tampermonkey.net/</span></span><br><span class="line"><span class="comment">// @version      0.1</span></span><br><span class="line"><span class="comment">// @description  解除 CSDN 阅读全文次数限制，自动展开全文</span></span><br><span class="line"><span class="comment">// @author       lousuan</span></span><br><span class="line"><span class="comment">// @match        https://blog.csdn.net/*/article/details/*</span></span><br><span class="line"><span class="comment">// @grant        none</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">    'use strict'</span>;</span><br><span class="line">    localStorage.removeItem(<span class="string">'anonymousUserLimit'</span>);</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"btn-readmore"</span>).click();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+        <p>最近因为工作需要，需要改用 Gradle 构建 Java 项目。Maven 是 Java 专用的 构建工具，基于 pom.xml 对构建过程进行管理。Gradle 也是构建工具，根据官方的说法，性能更好，功能更灵活、强大。本以为迁移不会是一个复杂的工作，没想到实际困难程度比预想的高不少，花了大概两三天才搞明白。</p>
+<p>gradle 中最常用的几个与 Java 编译、打包相关的插件，有以下几个</p>
+<ul>
+<li>java（<a href="https://docs.gradle.org/current/userguide/java_plugin.html" target="_blank" rel="noopener">官方文档</a>）：主要提供打包、编译相关的功能，以及依赖管理的的功能</li>
+<li>java-platform（<a href="https://docs.gradle.org/current/userguide/java_platform_plugin.html" target="_blank" rel="noopener">官方文档</a>）：提供依赖包版本管理的功能，简单来说就是对应 <code>pom</code> 文件的 <code>&lt;dependencies management&gt;</code></li>
+<li>maven-publish（<a href="https://docs.gradle.org/current/userguide/publishing_maven.html" target="_blank" rel="noopener">官方文档</a>）：提供发布到 maven 仓库的功能</li>
+</ul>
+<p>此外，还推荐阅读这篇<a href="https://docs.gradle.org/current/userguide/migrating_from_maven.html" target="_blank" rel="noopener">Maven 迁移指南</a>。本文不会介绍所有的具体细节，具体细节可以查看上面提到的四篇文档。</p>
+<h1 id="如何把-Maven-项目转换为-Gradle-项目？"><a href="#如何把-Maven-项目转换为-Gradle-项目？" class="headerlink" title="如何把 Maven 项目转换为 Gradle 项目？"></a>如何把 Maven 项目转换为 Gradle 项目？</h1><p>在 <code>pom.xml</code> 所在目录，运行 <code>gradle init</code>，会自动生成对应的 <code>build.gradle</code> 文件。更具体的内容参考 <a href="https://docs.gradle.org/current/userguide/migrating_from_maven.html" target="_blank" rel="noopener">Maven 迁移指南</a>。这个转换功能已经可以解决 80% 以上的需求。</p>
+<h1 id="多模块项目，如何进行项目统一版本管理？"><a href="#多模块项目，如何进行项目统一版本管理？" class="headerlink" title="多模块项目，如何进行项目统一版本管理？"></a>多模块项目，如何进行项目统一版本管理？</h1><ol>
+<li><code>gradle.setting</code> 里面声明 <code>root project</code> 和 <code>include</code> 。 <code>include</code> 对应的是 <code>pom.xml</code> 的 <code>&lt;modules&gt;</code>。</li>
+<li>在 <code>root project</code> 的 <code>build.gradle</code> 中声明 <code>subprojects</code> 的 <code>dependencice</code>：<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">subprojects</span> &#123;</span><br><span class="line">  <span class="keyword">dependencies</span> &#123;</span><br><span class="line">    <span class="keyword">compile</span> platform(<span class="string">'xxx:xxx:1.0-RELEASE'</span>)</span><br><span class="line">    implement platform(<span class="string">'xxx:xxx:1.0-RELEASE'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="idea-中，同时打开两个项目-A、B，如何让-A-依赖-B-的源码？"><a href="#idea-中，同时打开两个项目-A、B，如何让-A-依赖-B-的源码？" class="headerlink" title="idea 中，同时打开两个项目 A、B，如何让 A 依赖 B 的源码？"></a>idea 中，同时打开两个项目 A、B，如何让 A 依赖 B 的源码？</h1><p>如果使用的是 maven，只需要项目 B 的 <code>pom.xml</code> 中定义的 <code>GAV</code>，是项目 A 的依赖，idea 会帮我们自动引入。但是 gradle 不会，有两种解决方式：</p>
+<ol>
+<li>手动 build &amp; push 另一个项目到本地 maven 仓库，然后在项目中引入 <code>mavenLocal()</code> 作为 repository。</li>
+<li>在项目 B 的 <code>gradle.settings</code> 中 <code>includeBuild(../projectA)</code></li>
+</ol>
 
       
     </div>
@@ -363,7 +378,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/脚本/" rel="tag"># 脚本</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -376,8 +391,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/10/Docker 的一些要点/" rel="next" title="Docker 的一些要点">
-                <i class="fa fa-chevron-left"></i> Docker 的一些要点
+              <a href="/2019/06/10/C++中std::cin处理错误输入的问题/" rel="next" title="C++中std::cin处理错误输入的问题">
+                <i class="fa fa-chevron-left"></i> C++中std::cin处理错误输入的问题
               </a>
             
           </div>
@@ -386,8 +401,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/06/10/C++中std::cin处理错误输入的问题/" rel="prev" title="C++中std::cin处理错误输入的问题">
-                C++中std::cin处理错误输入的问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2022/07/31/Ubuntu 18.04 部分软件菜单栏消失问题/" rel="prev" title="Ubuntu 18.04 部分软件菜单栏消失问题">
+                Ubuntu 18.04 部分软件菜单栏消失问题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -440,8 +455,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -501,6 +525,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何把-Maven-项目转换为-Gradle-项目？"><span class="nav-number">1.</span> <span class="nav-text">如何把 Maven 项目转换为 Gradle 项目？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多模块项目，如何进行项目统一版本管理？"><span class="nav-number">2.</span> <span class="nav-text">多模块项目，如何进行项目统一版本管理？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#idea-中，同时打开两个项目-A、B，如何让-A-依赖-B-的源码？"><span class="nav-number">3.</span> <span class="nav-text">idea 中，同时打开两个项目 A、B，如何让 A 依赖 B 的源码？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
